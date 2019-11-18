@@ -1,0 +1,50 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 style="text-align: center;">Product List</h3>
+    </div>
+
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Date of Manufacture</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pdt of products | async ">
+            <td>{{pdt.pid}}</td>
+            <td>{{pdt.pname}}</td>
+            <td>{{pdt.pdesc}}</td>
+            <td>{{pdt.price}}</td>
+            <td>{{pdt.pdateStr}}</td>
+            <td>
+                <button [routerLink]="['/edit',pdt.pid]" class="btn btn-info" routerLinkActive="active"> Edit</button>
+               
+            </td>
+            <td> <button class="btn btn-danger" mwlConfirmationPopover
+              [popoverTitle]="popoverTitle"
+              [popoverMessage]="popoverMessage"
+              placement="left"
+              (confirm)="confirmClicked = true"
+              (cancel)="cancelClicked = true"
+              confirmButtonType="warning"
+              cancelButtonType="default"
+              (click)="confirmClicked=false; 
+              cancelClicked=false"
+              [appendToBody]="true"
+              (confirm)="deleteProduct(pdt.pid)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  
+  </div>
+  
+  
+  
+  
